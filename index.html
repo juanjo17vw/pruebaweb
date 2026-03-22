@@ -1,0 +1,1001 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Gestoría Administrativa Online Mallorca | Gestoría Benito</title>
+  <meta name="description" content="Gestoría administrativa online para toda Mallorca y Baleares. NIE, extranjería, tráfico, náutica y vivienda. Sin desplazamientos. Colegiada nº 518."/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --sand: #F8F4F5;
+      --sand-dark: #EDE0E4;
+      --ink: #1A1014;
+      --ink-muted: #5C4A50;
+      --ink-light: #9C8890;
+      --terracotta: #9D1336;
+      --terracotta-light: #C4365A;
+      --terracotta-pale: #F7E8EC;
+      --teal: #9D1336;
+      --teal-light: #F7E8EC;
+      --gold: #9D1336;
+      --white: #FFFFFF;
+      --radius: 4px;
+      --radius-lg: 12px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--white);
+      color: var(--ink);
+      font-size: 16px;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* ── LANGUAGE SWITCHER ── */
+    .lang-bar {
+      background: var(--ink);
+      color: var(--sand);
+      padding: 8px 40px;
+      display: flex;
+      justify-content: flex-end;
+      gap: 4px;
+      font-size: 12px;
+      letter-spacing: 0.08em;
+    }
+    .lang-btn {
+      background: none;
+      border: none;
+      color: var(--ink-light);
+      cursor: pointer;
+      padding: 2px 8px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 12px;
+      letter-spacing: 0.08em;
+      border-radius: 2px;
+      transition: color 0.2s;
+    }
+    .lang-btn.active, .lang-btn:hover { color: var(--white); }
+    .lang-btn.active { font-weight: 500; }
+
+    /* ── NAV ── */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--white);
+      border-bottom: 1px solid var(--sand-dark);
+      padding: 0 40px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 64px;
+    }
+    .nav-logo {
+      font-family: 'Instrument Serif', serif;
+      font-size: 20px;
+      color: var(--ink);
+      text-decoration: none;
+      letter-spacing: -0.01em;
+    }
+    .nav-logo span { color: var(--terracotta); }
+    .nav-links { display: flex; gap: 32px; list-style: none; }
+    .nav-links a {
+      text-decoration: none;
+      color: var(--ink-muted);
+      font-size: 14px;
+      font-weight: 400;
+      transition: color 0.2s;
+      letter-spacing: 0.01em;
+    }
+    .nav-links a:hover { color: var(--ink); }
+    .nav-cta {
+      background: var(--terracotta);
+      color: var(--white) !important;
+      padding: 8px 18px;
+      border-radius: var(--radius);
+      font-weight: 500 !important;
+      transition: background 0.2s !important;
+    }
+    .nav-cta:hover { background: var(--terracotta-light) !important; color: var(--white) !important; }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 88vh;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-left {
+      background: var(--sand);
+      padding: 80px 64px 80px 40px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      position: relative;
+    }
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--terracotta-pale);
+      color: var(--terracotta);
+      padding: 6px 14px;
+      border-radius: 2px;
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      margin-bottom: 32px;
+      width: fit-content;
+    }
+    .hero-badge::before {
+      content: '';
+      width: 6px; height: 6px;
+      background: var(--terracotta);
+      border-radius: 50%;
+    }
+    .hero h1 {
+      font-family: 'Instrument Serif', serif;
+      font-size: clamp(38px, 4vw, 58px);
+      line-height: 1.08;
+      letter-spacing: -0.02em;
+      color: var(--ink);
+      margin-bottom: 24px;
+    }
+    .hero h1 em {
+      font-style: italic;
+      color: var(--terracotta);
+    }
+    .hero-sub {
+      font-size: 17px;
+      color: var(--ink-muted);
+      line-height: 1.65;
+      margin-bottom: 40px;
+      max-width: 420px;
+      font-weight: 300;
+    }
+    .hero-ctas { display: flex; gap: 12px; flex-wrap: wrap; }
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--terracotta);
+      color: var(--white);
+      padding: 14px 24px;
+      border-radius: var(--radius);
+      font-weight: 500;
+      font-size: 15px;
+      text-decoration: none;
+      transition: background 0.2s, transform 0.15s;
+    }
+    .btn-primary:hover { background: var(--terracotta-light); transform: translateY(-1px); }
+    .btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: transparent;
+      color: var(--ink);
+      padding: 14px 24px;
+      border-radius: var(--radius);
+      border: 1.5px solid var(--sand-dark);
+      font-weight: 400;
+      font-size: 15px;
+      text-decoration: none;
+      transition: border-color 0.2s, transform 0.15s;
+    }
+    .btn-secondary:hover { border-color: var(--ink-muted); transform: translateY(-1px); }
+    .hero-trust {
+      margin-top: 48px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 13px;
+      color: var(--ink-light);
+    }
+    .hero-trust-badge {
+      background: var(--white);
+      border: 1px solid var(--sand-dark);
+      border-radius: var(--radius);
+      padding: 8px 14px;
+      font-size: 12px;
+      color: var(--ink-muted);
+      font-weight: 500;
+    }
+    .hero-right {
+      background: var(--ink);
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 60px 40px;
+    }
+    .hero-visual {
+      width: 100%;
+      max-width: 380px;
+    }
+    .hero-card {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: var(--radius-lg);
+      padding: 28px;
+      margin-bottom: 16px;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--terracotta), var(--terracotta-light));
+    }
+    .card-label {
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--terracotta-light);
+      margin-bottom: 8px;
+      font-weight: 500;
+    }
+    .card-title {
+      font-family: 'Instrument Serif', serif;
+      font-size: 22px;
+      color: var(--white);
+      margin-bottom: 6px;
+    }
+    .card-desc {
+      font-size: 13px;
+      color: rgba(255,255,255,0.5);
+      line-height: 1.5;
+    }
+    .card-status {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      margin-top: 14px;
+      background: rgba(42,122,111,0.2);
+      color: #7ECFC5;
+      padding: 4px 10px;
+      border-radius: 2px;
+      font-size: 12px;
+      font-weight: 500;
+    }
+    .card-status::before { content:''; width:6px; height:6px; background:#7ECFC5; border-radius:50%; }
+    .hero-mini-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .mini-card {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: var(--radius-lg);
+      padding: 18px;
+    }
+    .mini-card-icon { font-size: 22px; margin-bottom: 8px; }
+    .mini-card-name { font-size: 13px; color: rgba(255,255,255,0.7); font-weight: 500; }
+
+    /* ── PILLARS ── */
+    .pillars {
+      background: var(--white);
+      padding: 80px 40px;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      border-top: 1px solid var(--sand-dark);
+      border-bottom: 1px solid var(--sand-dark);
+    }
+    .pillar {
+      padding: 48px 40px;
+      position: relative;
+    }
+    .pillar:not(:last-child)::after {
+      content:'';
+      position: absolute;
+      right: 0; top: 20%; bottom: 20%;
+      width: 1px;
+      background: var(--sand-dark);
+    }
+    .pillar-num {
+      font-family: 'Instrument Serif', serif;
+      font-size: 48px;
+      color: var(--sand-dark);
+      line-height: 1;
+      margin-bottom: 20px;
+    }
+    .pillar h3 {
+      font-family: 'Instrument Serif', serif;
+      font-size: 22px;
+      margin-bottom: 12px;
+      color: var(--ink);
+      font-weight: 400;
+    }
+    .pillar p { font-size: 15px; color: var(--ink-muted); line-height: 1.65; font-weight: 300; }
+
+    /* ── PHILOSOPHY ── */
+    .philosophy {
+      background: var(--sand);
+      padding: 100px 40px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+    }
+    .philosophy-label {
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--terracotta);
+      font-weight: 500;
+      margin-bottom: 20px;
+    }
+    .philosophy h2 {
+      font-family: 'Instrument Serif', serif;
+      font-size: clamp(32px, 3vw, 44px);
+      line-height: 1.15;
+      letter-spacing: -0.01em;
+      margin-bottom: 28px;
+    }
+    .philosophy h2 em { font-style: italic; color: var(--terracotta); }
+    .philosophy-body {
+      font-size: 17px;
+      color: var(--ink-muted);
+      line-height: 1.75;
+      font-weight: 300;
+    }
+    .philosophy-body p { margin-bottom: 16px; }
+    .philosophy-right { display: flex; flex-direction: column; gap: 20px; }
+    .stat-card {
+      background: var(--white);
+      border-radius: var(--radius-lg);
+      padding: 28px 32px;
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      border: 1px solid var(--sand-dark);
+    }
+    .stat-num {
+      font-family: 'Instrument Serif', serif;
+      font-size: 40px;
+      color: var(--terracotta);
+      line-height: 1;
+      flex-shrink: 0;
+    }
+    .stat-desc { font-size: 14px; color: var(--ink-muted); line-height: 1.5; }
+    .stat-desc strong { color: var(--ink); font-weight: 500; display: block; margin-bottom: 2px; }
+
+    /* ── SERVICES ── */
+    .services {
+      background: var(--white);
+      padding: 100px 40px;
+    }
+    .section-header {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      margin-bottom: 56px;
+    }
+    .section-label {
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--terracotta);
+      font-weight: 500;
+      margin-bottom: 12px;
+    }
+    .section-header h2 {
+      font-family: 'Instrument Serif', serif;
+      font-size: clamp(28px, 3vw, 40px);
+      letter-spacing: -0.01em;
+    }
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1px;
+      background: var(--sand-dark);
+      border: 1px solid var(--sand-dark);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+    }
+    .service-card {
+      background: var(--white);
+      padding: 32px 28px;
+      transition: background 0.2s;
+      cursor: default;
+    }
+    .service-card:hover { background: var(--sand); }
+    .service-icon { font-size: 28px; margin-bottom: 16px; }
+    .service-name {
+      font-family: 'Instrument Serif', serif;
+      font-size: 19px;
+      color: var(--ink);
+      margin-bottom: 10px;
+      font-weight: 400;
+    }
+    .service-desc { font-size: 13px; color: var(--ink-muted); line-height: 1.6; margin-bottom: 16px; }
+    .service-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+    .tag {
+      background: var(--sand);
+      color: var(--ink-muted);
+      padding: 3px 8px;
+      border-radius: 2px;
+      font-size: 11px;
+      letter-spacing: 0.02em;
+    }
+
+    /* ── TESTIMONIALS ── */
+    .testimonials {
+      background: var(--ink);
+      padding: 100px 40px;
+    }
+    .testimonials .section-label { color: var(--terracotta-light); }
+    .testimonials h2 { color: var(--white); }
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+    .testimonial {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: var(--radius-lg);
+      padding: 32px;
+    }
+    .stars { color: var(--gold); font-size: 14px; margin-bottom: 16px; letter-spacing: 2px; }
+    .testimonial-text {
+      font-family: 'Instrument Serif', serif;
+      font-size: 17px;
+      color: var(--white);
+      line-height: 1.6;
+      font-style: italic;
+      margin-bottom: 20px;
+    }
+    .testimonial-author { font-size: 13px; color: rgba(255,255,255,0.4); }
+    .testimonial-flag { font-size: 16px; margin-right: 6px; }
+
+    /* ── CTA STRIP ── */
+    .cta-strip {
+      background: var(--terracotta);
+      padding: 80px 40px;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      align-items: center;
+      gap: 40px;
+    }
+    .cta-strip h2 {
+      font-family: 'Instrument Serif', serif;
+      font-size: clamp(28px, 3vw, 42px);
+      color: var(--white);
+      letter-spacing: -0.01em;
+      line-height: 1.15;
+    }
+    .cta-strip h2 em { font-style: italic; opacity: 0.75; }
+    .cta-strip-sub { font-size: 15px; color: rgba(255,255,255,0.7); margin-top: 8px; }
+    .cta-strip-btns { display: flex; flex-direction: column; gap: 12px; min-width: 220px; }
+    .btn-white {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      background: var(--white);
+      color: var(--terracotta);
+      padding: 14px 24px;
+      border-radius: var(--radius);
+      font-weight: 500;
+      font-size: 15px;
+      text-decoration: none;
+      transition: opacity 0.2s;
+    }
+    .btn-white:hover { opacity: 0.9; }
+    .btn-outline-white {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      background: transparent;
+      color: var(--white);
+      padding: 13px 24px;
+      border-radius: var(--radius);
+      border: 1.5px solid rgba(255,255,255,0.4);
+      font-size: 15px;
+      text-decoration: none;
+      transition: border-color 0.2s;
+    }
+    .btn-outline-white:hover { border-color: rgba(255,255,255,0.8); }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--ink);
+      color: rgba(255,255,255,0.5);
+      padding: 48px 40px;
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 40px;
+      border-top: 1px solid rgba(255,255,255,0.06);
+    }
+    .footer-logo {
+      font-family: 'Instrument Serif', serif;
+      font-size: 22px;
+      color: var(--white);
+      margin-bottom: 12px;
+    }
+    .footer-logo span { color: var(--terracotta-light); }
+    .footer-tagline { font-size: 13px; line-height: 1.6; font-weight: 300; }
+    .footer-col h4 {
+      font-size: 12px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.3);
+      margin-bottom: 16px;
+      font-weight: 500;
+    }
+    .footer-col ul { list-style: none; }
+    .footer-col li { margin-bottom: 10px; font-size: 14px; }
+    .footer-col a { color: rgba(255,255,255,0.5); text-decoration: none; transition: color 0.2s; }
+    .footer-col a:hover { color: var(--white); }
+    .footer-bottom {
+      background: var(--ink);
+      border-top: 1px solid rgba(255,255,255,0.06);
+      padding: 20px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 12px;
+      color: rgba(255,255,255,0.25);
+    }
+    .colegiada-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 12px;
+      color: rgba(255,255,255,0.4);
+    }
+    .colegiada-badge::before {
+      content: '✓';
+      background: var(--teal);
+      color: white;
+      width: 16px; height: 16px;
+      border-radius: 50%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 10px;
+      flex-shrink: 0;
+    }
+
+    /* ── ANIMATIONS ── */
+    .fade-up {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .fade-up.visible { opacity: 1; transform: translateY(0); }
+    .fade-up:nth-child(2) { transition-delay: 0.1s; }
+    .fade-up:nth-child(3) { transition-delay: 0.2s; }
+    .fade-up:nth-child(4) { transition-delay: 0.3s; }
+
+    /* ── MOBILE ── */
+    @media (max-width: 900px) {
+      nav { padding: 0 20px; }
+      .nav-links { display: none; }
+      .hero { grid-template-columns: 1fr; min-height: auto; }
+      .hero-right { display: none; }
+      .hero-left { padding: 60px 24px; }
+      .pillars { grid-template-columns: 1fr; padding: 40px 24px; }
+      .pillar:not(:last-child)::after { display: none; }
+      .pillar { padding: 32px 0; border-bottom: 1px solid var(--sand-dark); }
+      .philosophy { grid-template-columns: 1fr; padding: 60px 24px; gap: 40px; }
+      .services { padding: 60px 24px; }
+      .section-header { flex-direction: column; align-items: flex-start; gap: 12px; }
+      .services-grid { grid-template-columns: 1fr 1fr; }
+      .testimonials { padding: 60px 24px; }
+      .testimonials-grid { grid-template-columns: 1fr; }
+      .cta-strip { grid-template-columns: 1fr; padding: 60px 24px; }
+      footer { grid-template-columns: 1fr; padding: 40px 24px; }
+      .footer-bottom { flex-direction: column; gap: 8px; padding: 20px 24px; }
+      .lang-bar { padding: 8px 20px; }
+    }
+    @media (max-width: 600px) {
+      .services-grid { grid-template-columns: 1fr; }
+    }
+
+    /* ── HIDDEN LANG ── */
+    [data-en] { display: none; }
+    body.en [data-es] { display: none; }
+    body.en [data-en] { display: block; }
+    body.en span[data-en] { display: inline; }
+    body.en span[data-es] { display: none; }
+  </style>
+</head>
+<body>
+
+  <!-- LANG BAR -->
+  <div class="lang-bar">
+    <button class="lang-btn active" onclick="setLang('es')" id="btn-es">ES</button>
+    <button class="lang-btn" onclick="setLang('en')" id="btn-en">EN</button>
+  </div>
+
+  <!-- NAV -->
+  <nav>
+    <a href="#" class="nav-logo">Gestoría <span>Benito</span></a>
+    <ul class="nav-links">
+      <li><a href="#servicios" data-es>Servicios</a><a href="#servicios" data-en>Services</a></li>
+      <li><a href="#nosotros" data-es>Nosotros</a><a href="#nosotros" data-en>About</a></li>
+      <li><a href="#testimonios" data-es>Opiniones</a><a href="#testimonios" data-en>Reviews</a></li>
+      <li>
+        <a href="https://wa.me/34637189512" class="nav-cta" target="_blank">
+          <span data-es>WhatsApp</span><span data-en>WhatsApp</span>
+        </a>
+      </li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-left">
+      <div class="hero-badge" data-es>Gestoría online · Mallorca y Baleares</div>
+      <div class="hero-badge" data-en>Online gestor · Mallorca & Balearic Islands</div>
+
+      <h1 data-es>Tus trámites resueltos.<br><em>Sin esperas.</em><br>Sin desplazamientos.</h1>
+      <h1 data-en>Your paperwork sorted.<br><em>Fast.</em><br>From home.</h1>
+
+      <p class="hero-sub" data-es>Gestoría administrativa online para toda Mallorca y Baleares. NIE, extranjería, tráfico, náutica, vivienda y mucho más. Colegiada nº 518.</p>
+      <p class="hero-sub" data-en>Online administrative gestor for all of Mallorca and the Balearic Islands. NIE, residency, vehicles, nautical, property and more. Registered member nº 518.</p>
+
+      <div class="hero-ctas">
+        <a href="https://wa.me/34637189512" class="btn-primary" target="_blank">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          <span data-es>Escríbenos ahora</span>
+          <span data-en>Message us now</span>
+        </a>
+        <a href="#servicios" class="btn-secondary">
+          <span data-es>Ver servicios</span>
+          <span data-en>See services</span>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+        </a>
+      </div>
+
+      <div class="hero-trust">
+        <div class="hero-trust-badge" data-es>✓ Colegiada nº 518 · Baleares</div>
+        <div class="hero-trust-badge" data-en>✓ Registered nº 518 · Balearic Islands</div>
+        <div class="hero-trust-badge" data-es>100% Online</div>
+        <div class="hero-trust-badge" data-en>100% Online</div>
+      </div>
+    </div>
+
+    <div class="hero-right">
+      <div class="hero-visual">
+        <div class="hero-card">
+          <div class="card-label" data-es>Trámite en curso</div>
+          <div class="card-label" data-en>In progress</div>
+          <div class="card-title" data-es>Residencia no lucrativa</div>
+          <div class="card-title" data-en>Non-lucrative residency</div>
+          <div class="card-desc" data-es>Mallorca · Ciudadana alemana · Documentación enviada</div>
+          <div class="card-desc" data-en>Mallorca · German citizen · Documents submitted</div>
+          <div class="card-status" data-es>En tramitación</div>
+          <div class="card-status" data-en>Processing</div>
+        </div>
+        <div class="hero-mini-cards">
+          <div class="mini-card">
+            <div class="mini-card-icon">🚗</div>
+            <div class="mini-card-name" data-es>Transferencia vehículo</div>
+            <div class="mini-card-name" data-en>Vehicle transfer</div>
+          </div>
+          <div class="mini-card">
+            <div class="mini-card-icon">⚓</div>
+            <div class="mini-card-name" data-es>Trámite náutico</div>
+            <div class="mini-card-name" data-en>Nautical paperwork</div>
+          </div>
+          <div class="mini-card">
+            <div class="mini-card-icon">🏠</div>
+            <div class="mini-card-name" data-es>ITP Vivienda</div>
+            <div class="mini-card-name" data-en>Property tax (ITP)</div>
+          </div>
+          <div class="mini-card">
+            <div class="mini-card-icon">🔐</div>
+            <div class="mini-card-name" data-es>Certificado digital</div>
+            <div class="mini-card-name" data-en>Digital certificate</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PILLARS -->
+  <section class="pillars">
+    <div class="pillar fade-up">
+      <div class="pillar-num">01</div>
+      <h3 data-es>Rápido y sin papeleos</h3>
+      <h3 data-en>Fast, no paperwork stress</h3>
+      <p data-es>Nos encargamos de todo el proceso. Solo envíanos la documentación y nosotros hacemos el resto, de principio a fin.</p>
+      <p data-en>We handle the whole process. Just send us your documents and we take care of everything, start to finish.</p>
+    </div>
+    <div class="pillar fade-up">
+      <div class="pillar-num">02</div>
+      <h3 data-es>Sin que te muevas de casa</h3>
+      <h3 data-en>No travel required</h3>
+      <p data-es>Todo online. Sin colas, sin citas en ventanillas, sin desplazamientos. Gestiona tus trámites desde donde estés.</p>
+      <p data-en>Everything online. No queues, no office appointments, no travel. Handle your paperwork from wherever you are.</p>
+    </div>
+    <div class="pillar fade-up">
+      <div class="pillar-num">03</div>
+      <h3 data-es>Gestora colegiada oficial</h3>
+      <h3 data-en>Officially registered gestor</h3>
+      <p data-es>Colegiada nº 518 del Colegio Oficial de Gestores Administrativos de Baleares. Profesionalidad y responsabilidad civil.</p>
+      <p data-en>Registered member nº 518 of the Official College of Administrative Gestors of the Balearic Islands. Fully accountable and insured.</p>
+    </div>
+  </section>
+
+  <!-- PHILOSOPHY -->
+  <section class="philosophy" id="nosotros">
+    <div>
+      <div class="philosophy-label" data-es>Nuestra filosofía</div>
+      <div class="philosophy-label" data-en>Our approach</div>
+      <h2 data-es>La burocracia es<br>su problema.<br><em>No el tuyo.</em></h2>
+      <h2 data-en>Bureaucracy is<br>their problem.<br><em>Not yours.</em></h2>
+      <div class="philosophy-body" data-es>
+        <p>En Gestoría Benito creemos que los trámites no deberían quitarte el sueño. La burocracia es lenta, confusa y llena de pasos que nadie explica bien.</p>
+        <p>Nosotros estamos aquí para que eso no sea tu problema. Trabajamos 100% online, te explicamos todo con claridad y resolvemos las incidencias antes de que lleguen a ti.</p>
+        <p>Porque tu tiempo vale.</p>
+      </div>
+      <div class="philosophy-body" data-en>
+        <p>At Gestoría Benito we believe admin shouldn't keep you up at night. Spanish bureaucracy is slow, confusing, and full of steps nobody explains properly.</p>
+        <p>We're here so that's not your problem. We work 100% online, explain everything clearly, and handle any issues before they reach you.</p>
+        <p>Because your time matters.</p>
+      </div>
+    </div>
+    <div class="philosophy-right">
+      <div class="stat-card">
+        <div class="stat-num">24h</div>
+        <div class="stat-desc">
+          <strong data-es>Respuesta garantizada</strong>
+          <strong data-en>Guaranteed response</strong>
+          <span data-es>Te respondemos siempre en menos de 24 horas</span>
+          <span data-en>We always get back to you within 24 hours</span>
+        </div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">0</div>
+        <div class="stat-desc">
+          <strong data-es>Desplazamientos necesarios</strong>
+          <strong data-en>Trips to any office</strong>
+          <span data-es>Todos los trámites se gestionan online</span>
+          <span data-en>Every single process is handled online</span>
+        </div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">ES+EN</div>
+        <div class="stat-desc">
+          <strong data-es>Atendemos en dos idiomas</strong>
+          <strong data-en>We work in two languages</strong>
+          <span data-es>Español e inglés para residentes locales y extranjeros</span>
+          <span data-en>Spanish and English for locals and expats alike</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section class="services" id="servicios">
+    <div class="section-header">
+      <div>
+        <div class="section-label" data-es>Servicios</div>
+        <div class="section-label" data-en>Services</div>
+        <h2 data-es>Lo que gestionamos para ti</h2>
+        <h2 data-en>What we handle for you</h2>
+      </div>
+      <a href="mailto:info@gestoriabenito.com" class="btn-secondary" data-es>¿No encuentras tu trámite? Escríbenos →</a>
+      <a href="mailto:info@gestoriabenito.com" class="btn-secondary" data-en>Don't see your service? Ask us →</a>
+    </div>
+    <div class="services-grid">
+      <div class="service-card">
+        <div class="service-icon">🌍</div>
+        <div class="service-name" data-es>Extranjería</div>
+        <div class="service-name" data-en>Immigration</div>
+        <div class="service-desc" data-es>NIE, arraigo social y laboral, residencia, permiso de trabajo, reagrupación familiar, nacionalidad española.</div>
+        <div class="service-desc" data-en>NIE, residency permits, work permits, family reunification, Spanish nationality, arraigo.</div>
+        <div class="service-tags">
+          <span class="tag">NIE</span>
+          <span class="tag" data-es>Arraigo</span><span class="tag" data-en>Arraigo</span>
+          <span class="tag" data-es>Residencia</span><span class="tag" data-en>Residency</span>
+        </div>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">🚗</div>
+        <div class="service-name" data-es>Tráfico</div>
+        <div class="service-name" data-en>Vehicles</div>
+        <div class="service-desc" data-es>Transferencias, matrículas, informes DGT, duplicados, cambio de domicilio, baja de vehículos.</div>
+        <div class="service-desc" data-en>Vehicle transfers, registrations, DGT reports, duplicates, address changes, deregistration.</div>
+        <div class="service-tags">
+          <span class="tag" data-es>Transferencia</span><span class="tag" data-en>Transfer</span>
+          <span class="tag">DGT</span>
+          <span class="tag" data-es>Matrícula</span><span class="tag" data-en>Registration</span>
+        </div>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">⚓</div>
+        <div class="service-name" data-es>Náutica</div>
+        <div class="service-name" data-en>Nautical</div>
+        <div class="service-desc" data-es>Cambios de titularidad de embarcaciones, licencias náuticas, inscripción en el registro marítimo, bajas.</div>
+        <div class="service-desc" data-en>Boat ownership transfers, nautical licences, maritime registry, deregistration and duplicates.</div>
+        <div class="service-tags">
+          <span class="tag" data-es>Embarcaciones</span><span class="tag" data-en>Boats</span>
+          <span class="tag" data-es>Licencias</span><span class="tag" data-en>Licences</span>
+        </div>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">🏠</div>
+        <div class="service-name" data-es>Vivienda</div>
+        <div class="service-name" data-en>Property</div>
+        <div class="service-desc" data-es>Contratos de arras y compraventa, liquidación de ITP, plusvalía municipal, empadronamiento.</div>
+        <div class="service-desc" data-en>Purchase contracts, property transfer tax (ITP), capital gains tax, municipal registration.</div>
+        <div class="service-tags">
+          <span class="tag">ITP</span>
+          <span class="tag" data-es>Plusvalía</span><span class="tag" data-en>Capital gains</span>
+          <span class="tag" data-es>Contratos</span><span class="tag" data-en>Contracts</span>
+        </div>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">🚚</div>
+        <div class="service-name" data-es>Transportes</div>
+        <div class="service-name" data-en>Transport</div>
+        <div class="service-desc" data-es>Tarjetas de transporte, tacógrafos digitales, gestión de flotas y autorizaciones de operador.</div>
+        <div class="service-desc" data-en>Transport cards, digital tachographs, fleet management and operator authorisations.</div>
+        <div class="service-tags">
+          <span class="tag" data-es>Tacógrafo</span><span class="tag" data-en>Tachograph</span>
+          <span class="tag" data-es>Flotas</span><span class="tag" data-en>Fleet</span>
+        </div>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">💼</div>
+        <div class="service-name" data-es>Laboral</div>
+        <div class="service-name" data-en>Employment</div>
+        <div class="service-desc" data-es>Prestaciones de desempleo, tarjeta de demanda de empleo SOIB, subsidios SEPE.</div>
+        <div class="service-desc" data-en>Unemployment benefits, job centre registration (SOIB), SEPE subsidies and allowances.</div>
+        <div class="service-tags">
+          <span class="tag">SOIB</span>
+          <span class="tag">SEPE</span>
+          <span class="tag" data-es>Desempleo</span><span class="tag" data-en>Unemployment</span>
+        </div>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">🔐</div>
+        <div class="service-name" data-es>Certificados digitales</div>
+        <div class="service-name" data-en>Digital certificates</div>
+        <div class="service-desc" data-es>Emisión de certificados FNMT para persona física, representante de entidad y administrador único.</div>
+        <div class="service-desc" data-en>FNMT digital certificates for individuals, company representatives and sole administrators.</div>
+        <div class="service-tags">
+          <span class="tag">FNMT</span>
+          <span class="tag" data-es>Persona física</span><span class="tag" data-en>Individuals</span>
+        </div>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">📋</div>
+        <div class="service-name" data-es>Trámites generales</div>
+        <div class="service-name" data-en>General admin</div>
+        <div class="service-desc" data-es>Certificados, recursos administrativos, representación telemática ante la ATIB, Seguridad Social y Agencia Tributaria.</div>
+        <div class="service-desc" data-en>Certificates, admin appeals, online representation before ATIB, Social Security and Tax Agency.</div>
+        <div class="service-tags">
+          <span class="tag">ATIB</span>
+          <span class="tag" data-es>Recursos</span><span class="tag" data-en>Appeals</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section class="testimonials" id="testimonios">
+    <div class="section-header" style="margin-bottom:48px">
+      <div>
+        <div class="section-label" data-es>Opiniones</div>
+        <div class="section-label" data-en>Reviews</div>
+        <h2 style="color:var(--white)" data-es>Lo que dicen nuestros clientes</h2>
+        <h2 style="color:var(--white)" data-en>What our clients say</h2>
+      </div>
+    </div>
+    <div class="testimonials-grid">
+      <div class="testimonial">
+        <div class="stars">★★★★★</div>
+        <div class="testimonial-text" data-es>"Llevaba meses intentando gestionar el NIE por mi cuenta y no había manera. En menos de dos semanas Gestoría Benito lo resolvió todo. Cien por cien recomendable."</div>
+        <div class="testimonial-text" data-en>"I'd been trying to get my NIE sorted for months with no luck. Gestoría Benito handled everything in under two weeks. Absolutely brilliant service."</div>
+        <div class="testimonial-author"><span class="testimonial-flag">🇩🇪</span>M.R. — <span data-es>Residente extranjera en Mallorca</span><span data-en>Expat resident in Mallorca</span></div>
+      </div>
+      <div class="testimonial">
+        <div class="stars">★★★★★</div>
+        <div class="testimonial-text" data-es>"Rapidísimos y muy claros en todo momento. Hice el traspaso del coche sin moverme del sofá. No volvería a hacerlo de otra manera."</div>
+        <div class="testimonial-text" data-en>"So fast and clear throughout. I sorted my vehicle transfer without leaving the sofa. Would never do it any other way again."</div>
+        <div class="testimonial-author"><span class="testimonial-flag">🇪🇸</span>J.L. — <span data-es>Particular</span><span data-en>Private client</span></div>
+      </div>
+      <div class="testimonial">
+        <div class="stars">★★★★★</div>
+        <div class="testimonial-text" data-es>"Profesionalidad y trato cercano a partes iguales. Me explicaron cada paso sin tecnicismos y todo salió perfecto a la primera."</div>
+        <div class="testimonial-text" data-en>"Professional and personable in equal measure. They explained every step in plain language and everything went perfectly first time."</div>
+        <div class="testimonial-author"><span class="testimonial-flag">🇬🇧</span>T.H. — <span data-es>Residente británico en Mallorca</span><span data-en>British resident in Mallorca</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA STRIP -->
+  <section class="cta-strip">
+    <div>
+      <h2 data-es>¿Tienes un trámite pendiente?<br><em>Cuéntanos qué necesitas.</em></h2>
+      <h2 data-en>Got paperwork to sort?<br><em>Tell us what you need.</em></h2>
+      <p class="cta-strip-sub" data-es>Sin compromiso. Te respondemos en menos de 24 horas.</p>
+      <p class="cta-strip-sub" data-en>No commitment. We'll get back to you within 24 hours.</p>
+    </div>
+    <div class="cta-strip-btns">
+      <a href="https://wa.me/34637189512" class="btn-white" target="_blank">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        WhatsApp
+      </a>
+      <a href="mailto:info@gestoriabenito.com" class="btn-outline-white">
+        info@gestoriabenito.com
+      </a>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div>
+      <div class="footer-logo">Gestoría <span>Benito</span></div>
+      <div class="footer-tagline" data-es>Gestoría administrativa online para toda Mallorca y Baleares. Sin desplazamientos.</div>
+      <div class="footer-tagline" data-en>Online administrative gestor for all of Mallorca and the Balearic Islands. Fully remote.</div>
+      <div style="margin-top:20px">
+        <div class="colegiada-badge" data-es>Colegiada nº 518 — Col·legi Oficial de Gestors Administratius de les Illes Balears</div>
+        <div class="colegiada-badge" data-en>Registered nº 518 — Official College of Administrative Gestors of the Balearic Islands</div>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4 data-es>Servicios</h4>
+      <h4 data-en>Services</h4>
+      <ul>
+        <li><a href="#servicios" data-es>Extranjería y NIE</a><a href="#servicios" data-en>Immigration & NIE</a></li>
+        <li><a href="#servicios" data-es>Tráfico y vehículos</a><a href="#servicios" data-en>Vehicles & traffic</a></li>
+        <li><a href="#servicios" data-es>Náutica</a><a href="#servicios" data-en>Nautical</a></li>
+        <li><a href="#servicios" data-es>Vivienda</a><a href="#servicios" data-en>Property</a></li>
+        <li><a href="#servicios" data-es>Certificados digitales</a><a href="#servicios" data-en>Digital certificates</a></li>
+        <li><a href="#servicios" data-es>Transportes</a><a href="#servicios" data-en>Transport</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4 data-es>Contacto</h4>
+      <h4 data-en>Contact</h4>
+      <ul>
+        <li><a href="https://wa.me/34637189512" target="_blank">WhatsApp: 637 189 512</a></li>
+        <li><a href="tel:+34971934777">Tel: 971 934 777</a></li>
+        <li><a href="mailto:info@gestoriabenito.com">info@gestoriabenito.com</a></li>
+        <li style="margin-top:16px">
+          <a href="https://www.instagram.com" target="_blank">Instagram</a>
+        </li>
+        <li><a href="https://www.facebook.com" target="_blank">Facebook</a></li>
+        <li><a href="https://www.linkedin.com" target="_blank">LinkedIn</a></li>
+      </ul>
+    </div>
+  </footer>
+  <div class="footer-bottom">
+    <span>© 2026 Gestoría Benito. <span data-es>Todos los derechos reservados.</span><span data-en>All rights reserved.</span></span>
+    <span data-es>Gestoría administrativa online · Mallorca · Baleares</span>
+    <span data-en>Online administrative gestor · Mallorca · Balearic Islands</span>
+  </div>
+
+  <script>
+    function setLang(lang) {
+      document.body.classList.toggle('en', lang === 'en');
+      document.getElementById('btn-es').classList.toggle('active', lang === 'es');
+      document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+      document.documentElement.lang = lang;
+    }
+
+    // Scroll animations
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+    }, { threshold: 0.15 });
+    document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+  </script>
+</body>
+</html>
